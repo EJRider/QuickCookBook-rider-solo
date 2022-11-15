@@ -68,6 +68,8 @@ function NewRecipe(){
                     id="soy"
                     />
                </div>
+               <br/>
+               <h2>Diets</h2>
                <div className="diets">
                     <label for="veggie">Vegetarian</label>
                     <input 
@@ -109,8 +111,11 @@ function NewRecipe(){
                     type="checkbox"
                     id="highfib"
                     />
-               </div>
-               
+                </div>
+                <br/>
+                <h2>Ingredients</h2>
+                
+
             </form>
         </>
     )
