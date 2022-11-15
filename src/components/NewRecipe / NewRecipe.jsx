@@ -114,8 +114,36 @@ function NewRecipe(){
                 </div>
                 <br/>
                 <h2>Ingredients</h2>
-                
-
+                <div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Quantity</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input 
+                                    type="text"
+                                    />
+                                </td>
+                                <td>
+                                    <input 
+                                    type="text"
+                                    />
+                                </td>
+                                <button>Delete Ingredient</button>
+                            </tr>
+                        </tbody>
+                        <button>Add Ingredient</button>
+                    </table>
+                </div>
+                <br/>
+                <br/>
+                <button type='submit'>Submit Recipe</button>
             </form>
         </>
     )
