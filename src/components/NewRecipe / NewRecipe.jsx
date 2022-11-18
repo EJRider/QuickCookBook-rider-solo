@@ -120,7 +120,6 @@ function NewRecipe(){
                             <tr>
                                 <th>Name</th>
                                 <th>Quantity</th>
-                                
                             </tr>
                         </thead>
                         <tbody>
@@ -135,7 +134,6 @@ function NewRecipe(){
                                     type="text"
                                     />
                                 </td>
-                                <button>Delete Ingredient</button>
                             </tr>
                         </tbody>
                         <button>Add Ingredient</button>

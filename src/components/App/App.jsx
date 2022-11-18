@@ -22,6 +22,8 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import NewRecipe from '../NewRecipe / NewRecipe';
 
 import './App.css';
+import RecipeDetail from '../RecipeDetail/RecipeDetail';
+import SearchPage from '../SearchPage/SearchPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -68,6 +70,16 @@ function App() {
             <NewRecipe/>
           </ProtectedRoute>  
 
+          <ProtectedRoute
+          exact
+          path="/recipe/:id">
+            <RecipeDetail/>
+          </ProtectedRoute>
+          <ProtectedRoute
+          exact
+          path="/search">
+            <SearchPage/>
+          </ProtectedRoute>
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
