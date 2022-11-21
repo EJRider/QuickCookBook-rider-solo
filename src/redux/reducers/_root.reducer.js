@@ -5,6 +5,8 @@ import searchReducer from './search.reducer';
 import searchResults from './search.results.reducer';
 import userRecipes from './user.recipes.reducer';
 import allergens from './allergen.reducer';
+import newIngredients from './new.ingredients.reducer';
+import newIngredient from './newIngredient.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -19,6 +21,8 @@ const rootReducer = combineReducers({
   searchResults,
   userRecipes,
   allergens, 
+  newIngredients, 
+  newIngredient,
 });
 
 export default rootReducer;

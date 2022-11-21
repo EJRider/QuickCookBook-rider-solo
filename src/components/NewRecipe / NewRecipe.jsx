@@ -1,4 +1,7 @@
+import { useDispatch, useSelector } from "react-redux";
+
 function NewRecipe(){
+    const dispatch = useDispatch();
     const onSubmit = (e)=>{
         e.preventDefault();
     }
@@ -39,6 +42,7 @@ function NewRecipe(){
                     <input 
                     type="checkbox"
                     id="eggs"
+
                     />
                     <label for="fish">Fish</label>
                     <input 
@@ -130,11 +134,13 @@ function NewRecipe(){
                                 <td>
                                     <input 
                                     type="text"
+                                    id='newIngredient'
                                     />
                                 </td>
                                 <td>
                                     <input 
                                     type="text"
+                                    id='newQuantity'
                                     />
                                 </td>
                             </tr>
@@ -143,7 +149,63 @@ function NewRecipe(){
                     </table>
                 </div>
                 <br/>
+                <ul>
+                    {/* {ingredients && ingredients.map(ingredient => 
+                        <li>{ingredient.ingredient_name})}, {ingredient.quantity}</li> */}
+                </ul>
                 <br/>
+                <br/>
+                <div>
+                <h2> Nutritional Data</h2>
+                    <tbody>
+                        <tr>
+                            <td>
+                            <label for='calories'>Calories: </label>
+                            <input
+                            type="text"
+                            id="calories"
+                            ></input>
+                            </td>
+                            <td>
+                            <label for="protein">Protein: </label>
+                            <input
+                            type="text"
+                            id="protein"
+                            ></input>
+                            </td>
+                            <td>
+                            <label for="sugar">Sugar: </label>
+                            <input
+                            type="text"
+                            id="sugar"
+                            ></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <label for="fats">Fats: </label>
+                            <input
+                            type="text"
+                            id="fats"
+                            ></input>
+                            </td>
+                            <td>
+                            <label for="carbohydrates">Carbohydrates: </label>
+                            <input
+                            type="text"
+                            id="carbohydrates"
+                            ></input>
+                            </td>
+                            <td>
+                            <label for="servingSize">Serving Size: </label>
+                            <input
+                            type="text"
+                            id="servingSize"
+                            ></input>
+                            </td>
+                        </tr>
+                    </tbody>
+                    </div>
                 <button type='submit'>Submit Recipe</button>
             </form>
         </>
