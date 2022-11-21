@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 function SearchPage () {
     const dispatch = useDispatch();
     const search = useSelector(store=>store.searchReducer)
+    const results = useSelector(store=>store.storeResults)
     const onSubmit = (e)=>{
         e.preventDefault();
         dispatch({
@@ -22,8 +23,11 @@ function SearchPage () {
                 onChange={(e)=>dispatch({type: 'SET_SEARCH', payload: e.target.value})}
                 />  
                 <button type="submit">Search</button>  
-            </form>        
-            
+            </form>   
+            <br/>
+            <br/> 
+            <ul>    
+            </ul>
         </>
     )
 }

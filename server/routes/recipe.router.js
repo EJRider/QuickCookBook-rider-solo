@@ -5,8 +5,9 @@ const router = express.Router();
 //GET
  router.get('/', (req,res)=> {
     console.log('getting recipes');
-    const sqlText = `SELECT * FROM "recipes"`
-    pool.query(sqlText)
+    const sqlText = `SELECT * FROM "recipes" where "user_id" = $1`
+    const sqlParams = [req.user.id];
+    pool.query(sqlText, sqlParams)
         .then(dbRes=>{
             res.send(dbRes.rows);
         })

@@ -5,6 +5,10 @@ function* sendSearch(action){
     try{    
     let response = yield axios.get(`/api/search/${action.payload}`);
     console.log(response.data);
+    yield put({
+        type: 'SAVE_RESULTS',
+        payload: response.data
+    });
 }
     catch(error){
         console.error('search failed', error);
