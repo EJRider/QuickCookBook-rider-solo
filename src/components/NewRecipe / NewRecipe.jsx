@@ -145,8 +145,8 @@ function NewRecipe(){
                                 </td>
                             </tr>
                         </tbody>
-                        <button>Add Ingredient</button>
                     </table>
+                    <button>Add Ingredient</button>
                 </div>
                 <br/>
                 <ul>

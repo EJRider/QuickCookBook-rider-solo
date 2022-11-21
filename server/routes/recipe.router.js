@@ -49,6 +49,10 @@ const router = express.Router();
     }
  })
 //POST
+let recipeIdCount = 2
+router.post('/', (req,res)=>{
+
+})
 
 //PUT
 
