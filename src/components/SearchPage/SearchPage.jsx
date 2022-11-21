@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
+import RecipeBrief from "../RecipeBrief/RecipeBrief";
 
 function SearchPage () {
     const dispatch = useDispatch();
     const search = useSelector(store=>store.searchReducer)
-    const recipes = useSelector(store=>store.storeResults)
+    const recipes = useSelector(store=>store.searchResults)
     const onSubmit = (e)=>{
         e.preventDefault();
         dispatch({
@@ -27,8 +28,8 @@ function SearchPage () {
             <br/>
             <br/> 
             <ul>
-                {recipes && recipes.map(recipe=>
-                    <li key={recipe.id}>{recipe.recipe_name}</li>)}    
+                {recipes.length > 0 && recipes.map(recipe=>
+                <RecipeBrief key={recipe.id} recipe={recipe}/>)}
             </ul>
         </>
     )
