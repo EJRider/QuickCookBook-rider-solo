@@ -1,9 +1,12 @@
 function NewRecipe(){
+    const onSubmit = (e)=>{
+        e.preventDefault();
+    }
     return(
         <>
             <h1>New Recipe</h1>
 
-            <form>
+            <form onSubmit={onSubmit}>
                 <label for='recipe-name'>Recipe Name:</label>
                 <input
                 type="text"

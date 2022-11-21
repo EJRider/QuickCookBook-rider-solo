@@ -5,7 +5,14 @@ const router = express.Router();
 //GET
  router.get('/', (req,res)=> {
     console.log('getting recipes');
-    const sqlText = `SELECT * FROM "recipe"`
+    const sqlText = `SELECT * FROM "recipes"`
+    pool.query(sqlText)
+        .then(dbRes=>{
+            res.send(dbRes.rows);
+        })
+        .catch(dbErr=>{
+            res.sendStatus(500);
+        })
  })
 //POST
 
