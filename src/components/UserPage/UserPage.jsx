@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
+  const recipes = useSelector((store)=>store.userRecipes);
   const dispatch = useDispatch();
   useEffect(()=>{
     dispatch({
@@ -13,9 +14,14 @@ function UserPage() {
   },[]);
 
   return (
+    <>
     <div className="container">
         <h1>My Recipes</h1>
     </div>
+    <ul>
+      {recipes && recipes.map(recipe=>
+        <li key={recipe.id}>{recipe.recipe_name}</li>)}
+    </ul></>
   );
 }
 
