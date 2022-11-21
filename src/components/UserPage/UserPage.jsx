@@ -5,7 +5,13 @@ import { useEffect } from 'react';
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
-  
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch({
+      type:'GET_RECIPES'
+    })
+  },[]);
+
   return (
     <div className="container">
         <h1>My Recipes</h1>

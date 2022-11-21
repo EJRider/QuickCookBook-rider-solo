@@ -4,6 +4,7 @@ const router = express.Router();
 
 //GET
  router.get('/', (req,res)=> {
+    if(req.isAuthenticated()){
     console.log('getting recipes');
     const sqlText = `SELECT * FROM "recipes" where "user_id" = $1`
     const sqlParams = [req.user.id];
@@ -13,7 +14,7 @@ const router = express.Router();
         })
         .catch(dbErr=>{
             res.sendStatus(500);
-        })
+        })}
  })
 //POST
 
