@@ -1,0 +1,3 @@
+function Allergens({recipe, allergens}){
+    
+}

@@ -1,7 +1,7 @@
 import React from 'react';
-import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector, useDispatch} from 'react-redux';
 import { useEffect } from 'react';
+import RecipeBrief from '../RecipeBrief/RecipeBrief';
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
@@ -14,6 +14,9 @@ function UserPage() {
     dispatch({
       type:'GET_ALLERGENS'
     })
+    dispatch({
+      type:'GET_DIETS'
+    });
   },[]);
 
   return (
@@ -23,7 +26,7 @@ function UserPage() {
     </div>
     <ul>
       {recipes && recipes.map(recipe=>
-        <li key={recipe.id}>{recipe.recipe_name}</li>)}
+        <RecipeBrief key={recipe.id} recipe={recipe}/>)}
     </ul></>
   );
 }
