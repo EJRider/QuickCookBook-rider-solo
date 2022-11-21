@@ -49,7 +49,7 @@ const router = express.Router();
     }
  })
 //POST
-let recipeIdCount = 2
+let recipeIdCount = 3
 router.post('/', (req,res)=>{
 
 })
@@ -57,5 +57,8 @@ router.post('/', (req,res)=>{
 //PUT
 
 //DELETE
-
+router.delete('/:id', (req,res)=>{
+    let sqlText = `DELETE FROM "ingredients" WHERE "recipe_id" = $1;`;
+    
+})
 module.exports = router
