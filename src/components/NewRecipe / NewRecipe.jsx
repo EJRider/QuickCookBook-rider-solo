@@ -157,6 +157,7 @@ function NewRecipe(){
                 <br/>
                 <div>
                 <h2> Nutritional Data</h2>
+                    <table>
                     <tbody>
                         <tr>
                             <td>
@@ -205,6 +206,7 @@ function NewRecipe(){
                             </td>
                         </tr>
                     </tbody>
+                    </table>
                     </div>
                 <button type='submit'>Submit Recipe</button>
             </form>

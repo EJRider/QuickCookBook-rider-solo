@@ -22,7 +22,7 @@ function RecipeBrief({recipe}){
             <>
             <li>
                 <h3>{recipe.recipe_name}</h3>
-                <p>{allergens[0].allergen_name}, {allergens[1].allergen_name}</p>
+                {/* <p>{allergens[0].allergen_name}, {allergens[1].allergen_name}</p> */}
                 <p>{recipe.description}</p>
                 <p>Likes: {recipe.likes}</p>
                 <button>Copy Recipe</button> <button>Like</button>

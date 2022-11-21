@@ -17,7 +17,6 @@ function SearchPage () {
     }
     return (
         <>
-            {search}
             <form onSubmit={onSubmit}>
                 <label for="searchForm">Search for a recipe</label>
                 <input type="search" id="searchForm" value={search}

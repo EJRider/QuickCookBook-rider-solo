@@ -26,7 +26,7 @@ function UserPage() {
         <h1>My Recipes</h1>
     </div>
     <ul>
-      {recipes && recipes.map(recipe=>
+      {recipes.length > 0 && recipes.map(recipe=>
         <RecipeBrief key={recipe.id} recipe={recipe}/>)}
     </ul></>
   );
