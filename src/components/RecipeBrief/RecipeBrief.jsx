@@ -3,6 +3,11 @@ import {useSelector, useDispatch} from 'react-redux';
 function RecipeBrief({recipe}){
     const dispatch = useDispatch()
     if(recipe.user_id === currentUser.id){
+        dispatch({
+            type: "GET_BRIEF",
+            payload: recipe.recipe_id
+        });
+        
         return(
             <>
             <li>

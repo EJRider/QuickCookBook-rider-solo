@@ -11,6 +11,9 @@ function UserPage() {
     dispatch({
       type:'GET_RECIPES'
     })
+    dispatch({
+      type:'GET_ALLERGENS'
+    })
   },[]);
 
   return (
