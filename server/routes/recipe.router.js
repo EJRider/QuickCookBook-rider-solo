@@ -59,6 +59,26 @@ router.post('/', (req,res)=>{
 //DELETE
 router.delete('/:id', (req,res)=>{
     let sqlText = `DELETE FROM "ingredients" WHERE "recipe_id" = $1;`;
-    
+    const sqlParams = [req.params.id];
+    pool.query(sqlText, sqlParams)
+        .then(dbRes=>{
+            sqlText =`DELETE FROM "recipe-diet-junction" WHERE "recipes_id" = $1;`
+            pool.query(sqlText, sqlParams)
+            .then(dbRes=>{
+                sqlText=`DELETE FROM "recipe-allergen-junction" WHERE "recipe_id" = $1;`;
+                pool.query(sqlText, sqlParams)
+                    .then(dbRes=>{
+                        sqlText = `DELETE FROM "recipes" WHERE "id" = $1;`;
+                        pool.query(sqlText, sqlParams)
+                        .then(dbRes=>{
+                            res.sendStatus(201);
+                        })
+                        .catch(dbErr=>{
+                            console.error(dbErr);
+                            res.sendStatus(500);
+                        })
+                    })
+            })
+        })
 })
 module.exports = router

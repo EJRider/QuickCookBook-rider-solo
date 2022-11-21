@@ -14,13 +14,14 @@ function SearchPage () {
         dispatch({
             type: "CLEAR_SEARCH"
         });
+        console.log('search results are', recipes);
     }
     return (
         <>
             <form onSubmit={onSubmit}>
                 <label for="searchForm">Search for a recipe</label>
-                <input type="search" id="searchForm" value={search}
-                onChange={(e)=>dispatch({type: 'SET_SEARCH', payload: e.target.value})}
+                <input type="text" id="searchForm" value={search}
+                onChange={(evt)=>dispatch({type: 'SET_SEARCH', payload: evt.target.value})}
                 />  
                 <button type="submit">Search</button>  
             </form>   
