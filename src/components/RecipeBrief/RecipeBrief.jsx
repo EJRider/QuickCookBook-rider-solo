@@ -1,10 +1,17 @@
 import {useSelector, useDispatch} from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 function RecipeBrief({recipe}){
+    const history = useHistory();
     const dispatch = useDispatch()
     const currentUser = useSelector(store=>store.user);
     const allergens = useSelector(store=>store.allergens);
     let storedAllergens = [];
+    const diets = useSelector(store=>store.diets);
+    let storedDiets = [];
+    if(diets.length > 0){
+        storedDiets = diets.filter(diet=>diet.recipes_id === recipe.id);
+    }
     if(allergens.length>0) {
         storedAllergens = allergens.filter(allergen => allergen.recipe_id === recipe.id);
     }
@@ -13,14 +20,19 @@ function RecipeBrief({recipe}){
         return(
             <>
             <li>
-                <h3>{recipe.recipe_name}</h3>
-                <table>
-                <tr>
+                <h3 onClick={()=>{history.push(`/recipe/${recipe.id}`)}}>{recipe.recipe_name}</h3>
+                Allergens: 
+                <ul>
                     {storedAllergens.length > 0 && storedAllergens.map(allergen => (
-                    <td key={allergen}>{allergen.allergen_name}</td>
+                    <li key={allergen}>{allergen.allergen_name}</li>
                     ))}
-                </tr>
-                </table>
+                </ul>
+                Diets: 
+                <ul>
+                        {storedDiets.length > 0 && storedDiets.map(diet => (
+                            <li key={diet}>{diet.diet_name}</li>
+                        ))}
+                </ul>
                 <p>{recipe.description}</p>
                 <p>Likes: {recipe.likes}</p>
                 <button>Edit</button> <button onClick={()=>{

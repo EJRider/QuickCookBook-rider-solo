@@ -6,6 +6,8 @@ import searchSaga from './search.saga';
 import userRecipeSaga from './recipe.get.saga';
 import allergenSaga from './allergens.saga';
 import deleteSaga from './delete.saga';
+import dietSaga from './diets.saga';
+import targetRecipeSaga from './target.recipe.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -23,5 +25,7 @@ export default function* rootSaga() {
     userRecipeSaga(),
     allergenSaga(),
     deleteSaga(),
+    dietSaga(),
+    targetRecipeSaga(),
   ]);
 }

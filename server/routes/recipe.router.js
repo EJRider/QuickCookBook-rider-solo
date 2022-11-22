@@ -48,6 +48,34 @@ const router = express.Router();
             });
     }
  })
+
+ router.get('/:id', (req,res)=>{
+    if(req.isAuthenticated()){
+        const sqlText=`SELECT * FROM "recipes" WHERE "id" = $1;`;
+        const sqlParams = [req.params.id];
+        pool.query(sqlText, sqlParams)
+            .then(dbRes=>{
+                res.send(dbRes.rows);
+            })
+            .catch(dbErr=>{
+                res.sendStatus(500);
+            });
+    }
+ });
+
+    router.get('/ingredient/:id', (req,res)=>{
+        if(req.isAuthenticated()){
+            const sqlText=`SELECT * FROM "ingredients" WHERE "id" = $1;`;
+            const sqlParams = [req.params.id];
+            pool.query(sqlText, sqlParams)
+                .then(dbRes => {
+                    res.send(dbRes.rows);
+                })
+                .catch(dbErr=>{
+                    res.sendStatus(500)
+                });
+        }
+    })
 //POST
 let recipeIdCount = 3
 router.post('/', (req,res)=>{
@@ -64,13 +92,13 @@ router.delete('/:id', (req,res)=>{
         .then(dbRes=>{
             sqlText =`DELETE FROM "recipe-diet-junction" WHERE "recipes_id" = $1;`
             pool.query(sqlText, sqlParams)
-            .then(dbRes=>{
+            .then(dbResTwo=>{
                 sqlText=`DELETE FROM "recipe-allergen-junction" WHERE "recipe_id" = $1;`;
                 pool.query(sqlText, sqlParams)
-                    .then(dbRes=>{
+                    .then(dbResThree=>{
                         sqlText = `DELETE FROM "recipes" WHERE "id" = $1;`;
                         pool.query(sqlText, sqlParams)
-                        .then(dbRes=>{
+                        .then(dbResFour=>{
                             res.sendStatus(201);
                         })
                         .catch(dbErr=>{

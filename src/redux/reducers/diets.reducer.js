@@ -5,3 +5,5 @@ const diets = (state = [], action) => {
     }
     return state;
 }
+
+export default diets;
