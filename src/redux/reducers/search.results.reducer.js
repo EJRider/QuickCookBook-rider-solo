@@ -1,4 +1,4 @@
-const searchResults = (action=[], state) => {
+const searchResults = (state=[], action) => {
     switch(action.type){
         case 'SAVE_RESULTS':
             return action.payload;

@@ -14,7 +14,7 @@ function RecipeBrief({recipe}){
                 <p>{recipe.description}</p>
                 <p>Likes: {recipe.likes}</p>
                 <button>Edit</button> <button onClick={()=>{
-                    dispatch({type: 'DELETE_ITEM', payload: recipe.id});
+                    dispatch({type: 'DELETE_ITEM', payload: recipe.id}), dispatch({type: 'GET_RECIPES'});
                 }}>Delete</button>
             </li>
             </>
