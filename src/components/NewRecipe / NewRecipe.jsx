@@ -2,6 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 function NewRecipe(){
     const dispatch = useDispatch();
+    const newIngredient = useSelector(store=>store.newIngredient);
+    const newQuantity = useSelector(store=>store.newQuantity);
+    const ingredients = useSelector(store=>store.newIngredients);
     const onSubmit = (e)=>{
         e.preventDefault();
     }
@@ -135,23 +138,27 @@ function NewRecipe(){
                                     <input 
                                     type="text"
                                     id='newIngredient'
+                                    onChange={(e)=>{dispatch({type: 'LOG_INGREDIENT', payload: e.target.value})}}
+                                    value={newIngredient}
                                     />
                                 </td>
                                 <td>
                                     <input 
                                     type="text"
                                     id='newQuantity'
+                                    onChange={(e)=>{dispatch({type: 'LOG_QUANTITY', payload: e.target.value})}}
+                                    value={newQuantity}
                                     />
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    <button>Add Ingredient</button>
+                    <button onClick={()=>{dispatch({type: 'ADD_INGREDIENT', payload: {ingredient_name: newIngredient, quantity: newQuantity}})}}>Add Ingredient</button>
                 </div>
                 <br/>
                 <ul>
-                    {/* {ingredients && ingredients.map(ingredient => 
-                        <li>{ingredient.ingredient_name})}, {ingredient.quantity}</li> */}
+                    {ingredients.length > 0 && ingredients.map(ingredient => 
+                        <li key={ingredient.ingredient_name}>{ingredient.quantity} {ingredient.ingredient_name} </li>)}
                 </ul>
                 <br/>
                 <br/>
