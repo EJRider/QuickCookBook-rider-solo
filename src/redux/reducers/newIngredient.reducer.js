@@ -8,4 +8,4 @@ const newIngredient = (state='', action)=>{
     return state;
 }
 
-export default newIngredient
+export default newIngredient;

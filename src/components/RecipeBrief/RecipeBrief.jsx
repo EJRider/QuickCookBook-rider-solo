@@ -4,13 +4,23 @@ function RecipeBrief({recipe}){
     const dispatch = useDispatch()
     const currentUser = useSelector(store=>store.user);
     const allergens = useSelector(store=>store.allergens);
-    
+    let storedAllergens = [];
+    if(allergens.length>0) {
+        storedAllergens = allergens.filter(allergen => allergen.recipe_id === recipe.id);
+    }
+
     if(recipe.user_id === currentUser.id){
         return(
             <>
             <li>
                 <h3>{recipe.recipe_name}</h3>
-                {allergens.length>0 && <p>{allergens[0].allergen_name}, {allergens[1].allergen_name}</p>}
+                <table>
+                <tr>
+                    {storedAllergens.length > 0 && storedAllergens.map(allergen => (
+                    <td key={allergen}>{allergen.allergen_name}</td>
+                    ))}
+                </tr>
+                </table>
                 <p>{recipe.description}</p>
                 <p>Likes: {recipe.likes}</p>
                 <button>Edit</button> <button onClick={()=>{

@@ -8,6 +8,9 @@ import allergens from './allergen.reducer';
 import newIngredients from './new.ingredients.reducer';
 import newIngredient from './newIngredient.reducer';
 import newQuantity from './new.quantity.reducer';
+import targetAllergens from './target.allergen.reducer';
+import targetRecipe from './target.recipe.reducer';
+import targetDiets from './target.diets.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -27,6 +30,10 @@ const rootReducer = combineReducers({
   newIngredients, 
   newIngredient,
   newQuantity,
+  targetAllergens,
+  targetRecipe,
+  targetDiets,
+  
 });
 
 export default rootReducer;
