@@ -77,7 +77,7 @@ const router = express.Router();
         }
     })
 //POST
-let recipeIdCount = 3
+
 router.post('/', (req,res)=>{
 
 })
