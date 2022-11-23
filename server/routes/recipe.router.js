@@ -5,7 +5,6 @@ const router = express.Router();
 //GET
  router.get('/', (req,res)=> {
     if(req.isAuthenticated()){
-    console.log('getting recipes');
     const sqlText = `SELECT * FROM "recipes" where "user_id" = $1`
     const sqlParams = [req.user.id];
     pool.query(sqlText, sqlParams)
@@ -65,10 +64,11 @@ const router = express.Router();
 
     router.get('/ingredient/:id', (req,res)=>{
         if(req.isAuthenticated()){
-            const sqlText=`SELECT * FROM "ingredients" WHERE "id" = $1;`;
+            const sqlText=`SELECT * FROM "ingredients" WHERE "recipe_id" = $1;`;
             const sqlParams = [req.params.id];
             pool.query(sqlText, sqlParams)
                 .then(dbRes => {
+                    console.log('dbRes.rows is', dbRes.rows);
                     res.send(dbRes.rows);
                 })
                 .catch(dbErr=>{
