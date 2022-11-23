@@ -68,12 +68,42 @@ const router = express.Router();
             const sqlParams = [req.params.id];
             pool.query(sqlText, sqlParams)
                 .then(dbRes => {
-                    console.log('dbRes.rows is', dbRes.rows);
                     res.send(dbRes.rows);
                 })
                 .catch(dbErr=>{
                     res.sendStatus(500)
                 });
+        }
+    })
+
+    router.get('/allergens/:id', (req,res)=>{
+        if(req.isAuthenticated()){
+            const sqlText = `SELECT "recipe_id", "allergens"."allergen_name" FROM "recipe-allergen-junction" 
+            JOIN "allergens" on "allergens"."id" = "allergen_id" WHERE "recipe_id" = $1;`;
+            const sqlParams = [req.params.id];
+            pool.query(sqlText,sqlParams)
+                .then(dbRes=>{
+                    console.log('dbRes is', dbRes.rows);
+                    res.send(dbRes.rows);
+                })
+                .catch(dbErr=>{
+                    console.error(dbErr);
+                })
+        }
+    })
+    
+    router.get('/diets/:id', (req,res)=>{
+        if(req.isAuthenticated()){
+            const sqlText = `SELECT "recipes_id", "diets"."diet_name" from "recipe-diet-junction" 
+            JOIN "diets" ON "diets"."id" = "diet_id" WHERE "recipes_id" = $1;`;
+            const sqlParams = [req.params.id];
+            pool.query(sqlText, sqlParams)
+                .then(dbRes=>{
+                    res.send(dbRes.rows);
+                })
+                .catch(dbErr=>{
+                    console.error(dbErr);
+                })
         }
     })
 //POST

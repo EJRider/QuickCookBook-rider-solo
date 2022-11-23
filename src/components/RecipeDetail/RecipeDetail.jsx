@@ -7,22 +7,10 @@ function RecipeDetail(){
     const dispatch = useDispatch();
     
     const recipe = useSelector(store=>store.targetRecipe);
-    const allergens = useSelector(store=>store.allergens);
-    const diets = useSelector(store=>store.diets);
+    const allergens = useSelector(store=>store.targetAllergens);
+    const diets = useSelector(store=>store.targetDiets);
     const ingredients = useSelector(store=>store.targetIngredients);
     
-    let storedAllergens = [];
-    
-    let storedDiets = [];
-    if(allergens.length>0 && recipe) {
-        storedAllergens = allergens.filter(allergen => allergen.recipe_id === params.id);
-        console.log('storedAllergens', storedAllergens)
-    }
-    if(diets.length > 0){
-        storedDiets = diets.filter(diet=>diet.recipes_id === params.id);
-        console.log('storedDiets', storedDiets);
-        
-    }
 
     console.log('ingredients', ingredients);
     useEffect(()=>{
@@ -32,6 +20,14 @@ function RecipeDetail(){
         })
         dispatch({
             type: 'GET_TARGET_INGREDIENTS',
+            payload: params.id
+        })
+        dispatch({
+            type: 'GET_TARGET_ALLERGENS',
+            payload: params.id
+        })
+        dispatch({
+            type: 'GET_TARGET_DIETS',
             payload: params.id
         })
         
@@ -48,16 +44,13 @@ function RecipeDetail(){
         <br/>
         <h2>Allergens: </h2>
         <ul>
-        {storedAllergens.length > 0 && storedAllergens.map(allergen => (
-            <li key={allergen.allergen_name}>{allergen.allergen_name}</li>
-            ))}
+        
         </ul>
         <br/>
         <h2>Diets: </h2>
         <ul>
-            {storedDiets.length > 0 && storedDiets.map(diet => (
-                <li key={diet}>{diet.diet_name}</li>
-            ))}
+            {diets.length > 0 && diets.map(diet=>
+                <li key={diet.diet_name}>{diet.diet_name}</li>)}
         </ul>
         <br/>
         <h2>Ingredients: </h2>
