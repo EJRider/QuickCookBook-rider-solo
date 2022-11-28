@@ -7,9 +7,7 @@ function NewRecipe(){
     const ingredients = useSelector(store=>store.newIngredients);
     const currentAllergen = useSelector(store=>store.currentAllergen);
     const currentDiet = useSelector(store=>store.currentDiet);
-    const onSubmit = (e)=>{
-        e.preventDefault();
-    }
+   
     return(
         <>
             <h1>New Recipe</h1>
@@ -48,7 +46,7 @@ function NewRecipe(){
                     </select>
                     <br/>
                     <br/>
-                    <button>Add Allergen</button>
+                    <button onClick={()=>{dispatch({type: 'SAVE_NR_DIET', payload: currentAllergen})}}>Add Allergen</button>
                </div>
                <br/>
                <h2>Diets</h2>
@@ -66,7 +64,7 @@ function NewRecipe(){
                     </select>
                     <br/>
                     <br/>
-                    <button>Add Diet</button>
+                    <button onClick={()=>{dispatch({type: "SAVE_NR_DIET", payload: currentDiet})}}>Add Diet</button>
                 </div>
                 <br/>
                 <h2>Ingredients</h2>
