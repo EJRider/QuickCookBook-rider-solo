@@ -7,7 +7,8 @@ function NewRecipe(){
     const ingredients = useSelector(store=>store.newIngredients);
     const currentAllergen = useSelector(store=>store.currentAllergen);
     const currentDiet = useSelector(store=>store.currentDiet);
-   
+    const storedDiets = useSelector(store=>store.newRecipeDiets);
+    const storedAllergens = useSelector(store=>store.newRecipeAllergen);   
     return(
         <>
             <h1>New Recipe</h1>
@@ -46,7 +47,14 @@ function NewRecipe(){
                     </select>
                     <br/>
                     <br/>
-                    <button onClick={()=>{dispatch({type: 'SAVE_NR_DIET', payload: currentAllergen})}}>Add Allergen</button>
+                    <button onClick={()=>{dispatch({type: 'SAVE_NR_ALLERGEN', payload: currentAllergen})}}>Add Allergen</button>
+                    <br/>
+                    <br/>
+                    <ul>
+                        {storedAllergens.length > 0 && storedAllergens.map(allergen=>
+                            <li key={allergen}>{allergen} <button>Remove</button></li>
+                        )}
+                    </ul>
                </div>
                <br/>
                <h2>Diets</h2>
@@ -65,6 +73,15 @@ function NewRecipe(){
                     <br/>
                     <br/>
                     <button onClick={()=>{dispatch({type: "SAVE_NR_DIET", payload: currentDiet})}}>Add Diet</button>
+
+                    <br/>
+                    <br/>
+
+                    <ul>
+                        {storedDiets.length > 0 && storedDiets.map(diet => 
+                            <li key={diet}>{diet} <button>Remove</button></li>
+                        )}
+                    </ul>
                 </div>
                 <br/>
                 <h2>Ingredients</h2>
@@ -72,20 +89,12 @@ function NewRecipe(){
                     <table>
                         <thead>
                             <tr>
-                                <th>Name</th>
                                 <th>Quantity</th>
+                                <th>Name</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>
-                                    <input 
-                                    type="text"
-                                    id='newIngredient'
-                                    onChange={(e)=>{dispatch({type: 'LOG_INGREDIENT', payload: e.target.value})}}
-                                    value={newIngredient}
-                                    />
-                                </td>
                                 <td>
                                     <input 
                                     type="text"
@@ -94,6 +103,15 @@ function NewRecipe(){
                                     value={newQuantity}
                                     />
                                 </td>
+                                <td>
+                                    <input 
+                                    type="text"
+                                    id='newIngredient'
+                                    onChange={(e)=>{dispatch({type: 'LOG_INGREDIENT', payload: e.target.value})}}
+                                    value={newIngredient}
+                                    />
+                                </td>
+                                
                             </tr>
                         </tbody>
                     </table>
@@ -102,7 +120,9 @@ function NewRecipe(){
                 <br/>
                 <ul>
                     {ingredients.length > 0 && ingredients.map(ingredient => 
-                        <li key={ingredient.ingredient_name}>{ingredient.quantity} {ingredient.ingredient_name} </li>)}
+                        <li key={ingredient.ingredient_name}>{ingredient.quantity} {ingredient.ingredient_name} <button>Remove Ingredient</button></li>
+                        
+                        )}
                 </ul>
                 <br/>
                 <br/>
