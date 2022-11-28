@@ -5,20 +5,19 @@ function NewRecipe(){
     const newIngredient = useSelector(store=>store.newIngredient);
     const newQuantity = useSelector(store=>store.newQuantity);
     const ingredients = useSelector(store=>store.newIngredients);
+    const currentAllergen = useSelector(store=>store.currentAllergen);
+    const currentDiet = useSelector(store=>store.currentDiet);
     const onSubmit = (e)=>{
         e.preventDefault();
     }
     return(
         <>
             <h1>New Recipe</h1>
-
-            <form onSubmit={onSubmit}>
                 <label for='recipe-name'>Recipe Name:</label>
                 <input
                 type="text"
                 id="recipe-name"
                 />
-                {/* <input type="image"/> */}
                 <br/>
                 <br/>
                 <label for='recipe-desc'>Recipe Description: </label>
@@ -36,9 +35,8 @@ function NewRecipe(){
                 <br/>
                 <h2>Allergens</h2>
                 <div className="allergens">
-                <form>
-                <select name="allergens" id="allergens">
-                        <option key={0} defaultValue={0} hidden onChange={(e)=>{dispatch({type: 'SET_CURRENT_ALLERGEN', payload: e.target.value})}}>Select an Allergen</option>
+                <select name="allergens" id="allergens" onChange={(e)=>{dispatch({type: 'SET_CURRENT_ALLERGEN', payload: e.target.value})}}>
+                        <option key={0} defaultValue={0} hidden>Select an Allergen</option>
                         <option value="Milk" >Milk</option>
                         <option value="Eggs">Eggs</option>
                         <option value="Fish">Fish</option>
@@ -51,12 +49,10 @@ function NewRecipe(){
                     <br/>
                     <br/>
                     <button>Add Allergen</button>
-                </form>
                </div>
                <br/>
                <h2>Diets</h2>
                <div className="diets">
-                <form>
                     <select name="diets" id="diets" onChange={(e)=>{dispatch({type: 'SET_CURRENT_DIET', payload: e.target.value})}}>
                         <option key={0} defaultValue={0} hidden>Select a Diet</option>
                         <option value="Vegetarian">Vegetarian</option>
@@ -71,7 +67,6 @@ function NewRecipe(){
                     <br/>
                     <br/>
                     <button>Add Diet</button>
-                </form>
                 </div>
                 <br/>
                 <h2>Ingredients</h2>
@@ -167,7 +162,6 @@ function NewRecipe(){
                     </table>
                     </div>
                 <button type='submit'>Submit Recipe</button>
-            </form>
         </>
     )
 }
