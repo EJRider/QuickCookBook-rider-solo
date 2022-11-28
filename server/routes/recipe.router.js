@@ -1,4 +1,5 @@
 const express = require('express');
+const { default: reduxSaga } = require('redux-saga');
 const pool = require('../modules/pool');
 const router = express.Router();
 
@@ -108,9 +109,52 @@ const router = express.Router();
     })
 //POST
 
-router.post('/', (req,res)=>{
-
-})
+router.post('/submit', (req,res)=>{
+    if(req.isAuthenticated()){
+    console.log('reqbody is', req.body);
+    const sqlRecipe = `
+    INSERT INTO "recipes" ("user_id", "recipe_name", "description", "instructions", "likes", "calories", "protein", "sugar", "fats", "carbohydrates", "serving_size")
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+    RETURNING "id";
+    `;
+    const sqlRecipeParams = [req.body.data.user, req.body.data.recipeName, req.body.data.recipeDesc, req.body.data.recipeInst, '1', req.body.data.recipeCal, req.body.data.recipePro, req.body.data.recipeSugar, req.body.data.recipeFat, req.body.data.recipeCarb, req.body.data.recipeSize ]
+    pool.query(sqlRecipe, sqlRecipeParams)
+        .then(dbRecipeRes => {
+            const recipeId = dbRecipeRes.rows[0].id;
+            const sqlAllergen = `INSERT INTO "recipe-allergen-junction" ("recipe_id", "allergen_id")
+                                VALUES ($1, $2);`;
+            req.body.data.recipeAllergens.map(allergen => {
+                let sqlAllergenParams = [recipeId, allergen]
+                pool.query(sqlAllergen, sqlAllergenParams)
+                    .catch(dbAllergenErr => {
+                        console.error(dbAllergenErr);
+                    })
+                })
+            const sqlDiet = `INSERT INTO "recipe-diet-junction" ("recipes_id", "diet_id")
+                            VALUES ($1, $2);`;
+            req.body.data.recipeDiets.map(diet=>{
+                let sqlDietParams = [recipeId, diet]
+                pool.query(sqlDiet, sqlDietParams)
+                    .catch(dbDietErr=>{
+                        console.error(dbDietErr);
+                    })
+            })
+            
+            const sqlIngredients = `INSERT INTO "ingredients" ( "recipe_id", "ingredient_name", "quantity")
+            VALUES ($1, $2, $3);`;
+            req.body.data.recipeIngredients.map(ingredient => {
+                let sqlIngredientsParams = [recipeId, ingredient.ingredient_name, ingredient.quantity];
+                pool.query(sqlIngredients, sqlIngredientsParams)
+                    .catch(dbIngredientErr => {
+                        console.error(dbIngredientErr);
+                    })
+            })
+        })
+        .catch(dbRecipeErr => {
+            console.error(dbRecipeErr);
+        });
+    }
+});
 
 //PUT
 router.put('/likes/:id', (req,res)=>{

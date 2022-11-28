@@ -18,12 +18,15 @@ function NewRecipe(){
     const storedPro = useSelector(store=>store.recipePro);
     const storedSize = useSelector(store=>store.recipeSize);
     const storedSugar = useSelector(store=>store.recipeSugar);
+    const userId = useSelector(store=>store.user)
     
 
     const submitRecipe = ()=>{
+        dispatch({type: 'FETCH_USER'});
         dispatch({
             type: 'SUBMIT_RECIPE',
             payload: {
+                user: userId.id,
                 recipeName: storedName,
                 recipeDesc: storedDesc,
                 recipeInst: storedInst,
@@ -72,14 +75,14 @@ function NewRecipe(){
                 <div className="allergens">
                 <select name="allergens" id="allergens" onChange={(e)=>{dispatch({type: 'SET_CURRENT_ALLERGEN', payload: e.target.value})}}>
                         <option key={0} defaultValue={0} hidden>Select an Allergen</option>
-                        <option value="Milk" >Milk</option>
-                        <option value="Eggs">Eggs</option>
-                        <option value="Fish">Fish</option>
-                        <option value="Shellfish">Shellfish</option>
-                        <option value="Tree Nut">Tree Nut</option>
-                        <option value="Peanut">Peanut</option>
-                        <option value="Soybeans">Soybeans</option>
-                        <option value="Gluten">Gluten</option>
+                        <option value={1} >Milk</option>
+                        <option value={2}>Eggs</option>
+                        <option value={3}>Fish</option>
+                        <option value={4}>Shellfish</option>
+                        <option value={5}>Tree Nut</option>
+                        <option value={6}>Peanut</option>
+                        <option value={7}>Gluten</option>
+                        <option value={8}>Soybeans</option>
                     </select>
                     <br/>
                     <br/>
@@ -87,9 +90,27 @@ function NewRecipe(){
                     <br/>
                     <br/>
                     <ul>
-                        {storedAllergens.length > 0 && storedAllergens.map(allergen=>
-                            <li key={allergen}>{allergen} <button>Remove</button></li>
-                        )}
+                        {storedAllergens.length > 0 && storedAllergens.map(allergen => 
+                            // {switch (allergen){
+                            //     case 1:
+                            //         <li key={allergen}>Milk <button>Remove</button></li>;
+                            //     case 2: 
+                            //         <li key={allergen}>Eggs <button>Remove</button></li>;
+                            //     case 3:
+                            //         <li key={allergen}>Fish <button>Remove</button></li>;
+                            //     case 4:
+                            //         <li key={allergen}>Shellfish <button>Remove</button></li>;
+                            //     case 5: 
+                            //         <li key={allergen}>Tree Nut <button>Remove</button></li>;
+                            //     case 6: 
+                            //         <li key={allergen}>Peanut <button>Remove</button></li>;
+                            //     case 7:
+                            //         <li key={allergen}>Gluten <button>Remove</button></li>;
+                            //     case 8:
+                            //         <li key={allergen}>Soybeans <button>Remove</button></li>;
+                            //     }})}
+                       <li key={allergen}>{allergen} <button>Remove</button></li>)}
+
                     </ul>
                </div>
                <br/>
@@ -97,14 +118,14 @@ function NewRecipe(){
                <div className="diets">
                     <select name="diets" id="diets" onChange={(e)=>{dispatch({type: 'SET_CURRENT_DIET', payload: e.target.value})}}>
                         <option key={0} defaultValue={0} hidden>Select a Diet</option>
-                        <option value="Vegetarian">Vegetarian</option>
-                        <option value="Vegan">Vegan</option>
-                        <option value="Keto">Keto</option>
-                        <option value="Low Sodium">Low Sodium</option>
-                        <option value="Cardiac">Cardiac</option>
-                        <option value="Halal">Halal</option>
-                        <option value="Kosher">Kosher</option>
-                        <option value="High Fiber">High Fiber</option>
+                        <option value={1}>Vegetarian</option>
+                        <option value={2}>Vegan</option>
+                        <option value={3}>Low Sodium</option>
+                        <option value={4}>Kosher</option>
+                        <option value={5}>Halal</option>
+                        <option value={6}>Keto</option>
+                        <option value={7}>High Fiber</option>
+                        <option value={8}>Cardiac</option>
                     </select>
                     <br/>
                     <br/>

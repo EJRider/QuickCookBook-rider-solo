@@ -46,7 +46,7 @@ function RecipeBrief({recipe}){
         return(
             <>
             <li>
-                <h3>{recipe.recipe_name}</h3>
+                <h3 onClick={()=>{history.push(`/recipe/${recipe.id}`)}}> {recipe.recipe_name}</h3>
                 {allergens.length>0 && <p>{allergens[0].allergen_name}, {allergens[1].allergen_name}</p>}
                 <p>{recipe.description}</p>
                 <p>Likes: {recipe.likes}</p>

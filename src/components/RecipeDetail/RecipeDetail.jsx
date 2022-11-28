@@ -44,7 +44,9 @@ function RecipeDetail(){
         <br/>
         <h2>Allergens: </h2>
         <ul>
-        
+            {allergens.length > 0 && allergens.map(allergen=>
+                <li key={allergen.allergen_name}>{allergen.allergen_name}</li>
+            )}
         </ul>
         <br/>
         <h2>Diets: </h2>
@@ -59,6 +61,18 @@ function RecipeDetail(){
                 <li key={ingredient.ingredient_name}>{ingredient.quantity} {ingredient.ingredient_name}</li>
         )}
         </ul>
+        <h3>Calories</h3>
+        {recipe.length > 0 && <p>{recipe[0].calories}</p>}
+        <h3>Protein</h3>
+        {recipe.length > 0 && <p>{recipe[0].protein}</p>}
+        <h3>Sugar</h3>
+        {recipe.length > 0 && <p>{recipe[0].sugar}</p>}
+        <h3>Fats</h3>
+        {recipe.length > 0 && <p>{recipe[0].fats}</p>}
+        <h3>Carbohydrates</h3>
+        {recipe.length > 0 && <p>{recipe[0].carbohydrates}</p>}
+        <h3>Serving Size</h3>
+        {recipe.length > 0 && <p>{recipe[0].serving_size}</p>}
         </>
     )
 }
