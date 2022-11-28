@@ -9,6 +9,36 @@ function NewRecipe(){
     const currentDiet = useSelector(store=>store.currentDiet);
     const storedDiets = useSelector(store=>store.newRecipeDiets);
     const storedAllergens = useSelector(store=>store.newRecipeAllergen);   
+    const storedName = useSelector(store=>store.recipeName);
+    const storedDesc = useSelector(store=>store.recipeDesc);
+    const storedInst = useSelector(store=>store.recipeInst);
+    const storedCal = useSelector(store=>store.recipeCal);
+    const storedCarb = useSelector(store=>store.recipeCarb);
+    const storedFat = useSelector(store=>store.recipeFat);
+    const storedPro = useSelector(store=>store.recipePro);
+    const storedSize = useSelector(store=>store.recipeSize);
+    const storedSugar = useSelector(store=>store.recipeSugar);
+    
+
+    const submitRecipe = ()=>{
+        dispatch({
+            type: 'SUBMIT_RECIPE',
+            payload: {
+                recipeName: storedName,
+                recipeDesc: storedDesc,
+                recipeInst: storedInst,
+                recipeAllergens: storedAllergens,
+                recipeDiets: storedDiets,
+                recipeIngredients: ingredients,
+                recipeCal: storedCal,
+                recipePro: storedPro,
+                recipeSugar: storedSugar,
+                recipeFat: storedFat,
+                recipeCarb: storedCarb,
+                recipeSize: storedSize
+            }
+        })
+    }
     return(
         <>
             <h1>New Recipe</h1>
@@ -16,12 +46,16 @@ function NewRecipe(){
                 <input
                 type="text"
                 id="recipe-name"
+                onChange={(e)=>{dispatch({type: 'SAVE_NAME', payload: e.target.value})}}
+                value={storedName}
                 />
                 <br/>
                 <br/>
                 <label for='recipe-desc'>Recipe Description: </label>
                 <textarea 
                 id="recipe-desc"
+                onChange={(e)=>{dispatch({type: 'SAVE_DESC', payload: e.target.value})}}
+                value={storedDesc}
                 />
                 <br />
                 <br/>
@@ -29,6 +63,8 @@ function NewRecipe(){
                 <textarea 
                 type="text"
                 id="recipe-inst"
+                onChange={(e)=>{dispatch({type: 'SAVE_INST', payload: e.target.value})}}
+                value={storedInst}
                 />
                 <br/>
                 <br/>
@@ -89,20 +125,12 @@ function NewRecipe(){
                     <table>
                         <thead>
                             <tr>
-                                <th>Quantity</th>
                                 <th>Name</th>
+                                <th>Quantity</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>
-                                    <input 
-                                    type="text"
-                                    id='newQuantity'
-                                    onChange={(e)=>{dispatch({type: 'LOG_QUANTITY', payload: e.target.value})}}
-                                    value={newQuantity}
-                                    />
-                                </td>
                                 <td>
                                     <input 
                                     type="text"
@@ -111,7 +139,14 @@ function NewRecipe(){
                                     value={newIngredient}
                                     />
                                 </td>
-                                
+                                 <td>
+                                    <input 
+                                    type="text"
+                                    id='newQuantity'
+                                    onChange={(e)=>{dispatch({type: 'LOG_QUANTITY', payload: e.target.value})}}
+                                    value={newQuantity}
+                                    />
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -121,7 +156,6 @@ function NewRecipe(){
                 <ul>
                     {ingredients.length > 0 && ingredients.map(ingredient => 
                         <li key={ingredient.ingredient_name}>{ingredient.quantity} {ingredient.ingredient_name} <button>Remove Ingredient</button></li>
-                        
                         )}
                 </ul>
                 <br/>
@@ -136,6 +170,8 @@ function NewRecipe(){
                             <input
                             type="text"
                             id="calories"
+                            onChange={(e)=>{dispatch({type: 'SAVE_CAL', payload: e.target.value})}}
+                            value={storedCal}
                             ></input>
                             </td>
                             <td>
@@ -143,6 +179,8 @@ function NewRecipe(){
                             <input
                             type="text"
                             id="protein"
+                            onChange={(e)=>{dispatch({type: 'SAVE_PRO', payload: e.target.value})}}
+                            value={storedPro}
                             ></input>
                             </td>
                             <td>
@@ -150,6 +188,8 @@ function NewRecipe(){
                             <input
                             type="text"
                             id="sugar"
+                            onChange={(e)=>{dispatch({type: 'SAVE_SUGAR', payload: e.target.value})}}
+                            value={storedSugar}
                             ></input>
                             </td>
                         </tr>
@@ -159,6 +199,8 @@ function NewRecipe(){
                             <input
                             type="text"
                             id="fats"
+                            onChange={(e)=>{dispatch({type: 'SAVE_FAT', payload: e.target.value})}}
+                            value={storedFat}
                             ></input>
                             </td>
                             <td>
@@ -166,6 +208,8 @@ function NewRecipe(){
                             <input
                             type="text"
                             id="carbohydrates"
+                            onChange={(e)=>{dispatch({type: 'SAVE_CARB', payload: e.target.value})}}
+                            value={storedCarb}
                             ></input>
                             </td>
                             <td>
@@ -173,13 +217,15 @@ function NewRecipe(){
                             <input
                             type="text"
                             id="servingSize"
+                            onChange={(e)=>{dispatch({type: 'SAVE_SERV', payload: e.target.value})}}
+                            value={storedSize}
                             ></input>
                             </td>
                         </tr>
                     </tbody>
                     </table>
                     </div>
-                <button type='submit'>Submit Recipe</button>
+                <button onClick={submitRecipe}>Submit Recipe</button>
         </>
     )
 }
