@@ -11,6 +11,7 @@ import targetRecipeSaga from './target.recipe.saga';
 import targetIngredientSaga from './target.ingredient.saga';
 import targetAllergenSaga from './target.allergens.saga';
 import targetDietsSaga from './target.diets.saga';
+import likePostSaga from './like.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -33,5 +34,6 @@ export default function* rootSaga() {
     targetIngredientSaga(),
     targetAllergenSaga(),
     targetDietsSaga(),
+    likePostSaga(),
   ]);
 }

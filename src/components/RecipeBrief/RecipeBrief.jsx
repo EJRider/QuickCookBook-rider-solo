@@ -50,7 +50,7 @@ function RecipeBrief({recipe}){
                 {allergens.length>0 && <p>{allergens[0].allergen_name}, {allergens[1].allergen_name}</p>}
                 <p>{recipe.description}</p>
                 <p>Likes: {recipe.likes}</p>
-                <button>Copy Recipe</button> <button>Like</button>
+                <button onClick={()=>{dispatch({type:'LIKE_POST', payload: recipe.id })}}>Like</button>
             </li>
             </>
         )

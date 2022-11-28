@@ -36,91 +36,42 @@ function NewRecipe(){
                 <br/>
                 <h2>Allergens</h2>
                 <div className="allergens">
-                    <label for="milk">Milk</label>
-                    <input 
-                    type="checkbox"
-                    id="milk"
-                    />
-                    <label for="eggs">Egg</label>
-                    <input 
-                    type="checkbox"
-                    id="eggs"
-
-                    />
-                    <label for="fish">Fish</label>
-                    <input 
-                    type="checkbox"
-                    id="fish"
-                    />
-                    <label for="shlfish">Shelfish</label>
-                    <input 
-                    type="checkbox"
-                    id="shlfish"
-                    />
-                    <label for="tnut">Tree Nut</label>
-                    <input 
-                    type="checkbox"
-                    id="tnut"
-                    />
-                    <label for="pnut">Peanut</label>
-                    <input 
-                    type="checkbox"
-                    id="pnut"
-                    />
-                    <label for="gluten">Gluten</label>
-                    <input 
-                    type="checkbox"
-                    id="gluten"
-                    />
-                    <label for="soy">Soybeans</label>
-                    <input 
-                    type="checkbox"
-                    id="soy"
-                    />
+                <form>
+                <select name="allergens" id="allergens">
+                        <option key={0} defaultValue={0} hidden onChange={(e)=>{dispatch({type: 'SET_CURRENT_ALLERGEN', payload: e.target.value})}}>Select an Allergen</option>
+                        <option value="Milk" >Milk</option>
+                        <option value="Eggs">Eggs</option>
+                        <option value="Fish">Fish</option>
+                        <option value="Shellfish">Shellfish</option>
+                        <option value="Tree Nut">Tree Nut</option>
+                        <option value="Peanut">Peanut</option>
+                        <option value="Soybeans">Soybeans</option>
+                        <option value="Gluten">Gluten</option>
+                    </select>
+                    <br/>
+                    <br/>
+                    <button>Add Allergen</button>
+                </form>
                </div>
                <br/>
                <h2>Diets</h2>
                <div className="diets">
-                    <label for="veggie">Vegetarian</label>
-                    <input 
-                    type="checkbox"
-                    id="veggie"
-                    />
-                    <label for="vegan">Vegan</label>
-                    <input 
-                    type="checkbox"
-                    id="vegan"
-                    />
-                    <label for="Keto">Keto</label>
-                    <input 
-                    type="checkbox"
-                    id="keto"
-                    />
-                    <label for="lowsd">Low Sodium</label>
-                    <input 
-                    type="checkbox"
-                    id="lowsd"
-                    />
-                    <label for="cardiac">Cardiac</label>
-                    <input 
-                    type="checkbox"
-                    id="cardiac"
-                    />
-                    <label for="halal">Halal</label>
-                    <input 
-                    type="checkbox"
-                    id="halal"
-                    />
-                    <label for="kosher">Kosher</label>
-                    <input 
-                    type="checkbox"
-                    id="kosher"
-                    />
-                    <label for="highfib">High Fiber</label>
-                    <input 
-                    type="checkbox"
-                    id="highfib"
-                    />
+                <form>
+                    <select name="diets" id="diets" onChange={(e)=>{dispatch({type: 'SET_CURRENT_DIET', payload: e.target.value})}}>
+                        <option key={0} defaultValue={0} hidden>Select a Diet</option>
+                        <option value="Vegetarian">Vegetarian</option>
+                        <option value="Vegan">Vegan</option>
+                        <option value="Keto">Keto</option>
+                        <option value="Low Sodium">Low Sodium</option>
+                        <option value="Cardiac">Cardiac</option>
+                        <option value="Halal">Halal</option>
+                        <option value="Kosher">Kosher</option>
+                        <option value="High Fiber">High Fiber</option>
+                    </select>
+                    <br/>
+                    <br/>
+                    <button>Add Diet</button>
+                </form>
                 </div>
                 <br/>
                 <h2>Ingredients</h2>

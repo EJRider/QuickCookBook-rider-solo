@@ -113,6 +113,20 @@ router.post('/', (req,res)=>{
 })
 
 //PUT
+router.put('/likes/:id', (req,res)=>{
+    let sqlText = `UPDATE "recipes" 
+    SET "likes" = "likes" + 1
+    WHERE "id" = $1`;
+    let sqlParams = [req.params.id];
+    pool.query(sqlText, sqlParams)
+        .then(dbRes=>{
+            res.sendStatus(201);
+        })
+        .catch(dbErr => {
+            res.sendStatus(500);
+            console.error(dbErr);
+        })
+})
 
 //DELETE
 router.delete('/:id', (req,res)=>{

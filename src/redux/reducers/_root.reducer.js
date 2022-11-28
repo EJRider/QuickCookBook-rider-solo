@@ -13,6 +13,8 @@ import targetIngredients from './target.ingredients.reducer';
 import diets from './diets.reducer';
 import targetDiets from './target.diets.reducer';
 import targetAllergens from './target.allergen.reducer';
+import currentDiet from './current.diet.recuder';
+import currentAllergen from './current.allergen.reducer';
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -36,6 +38,8 @@ const rootReducer = combineReducers({
   targetIngredients,
   targetAllergens,
   targetDiets,
+  currentDiet,
+  currentAllergen,
 });
 
 export default rootReducer;
