@@ -28,6 +28,7 @@ function AboutPage() {
       <div id="software">
         <h2>Technologies</h2>
         <ul>
+          <li>Node.js</li>
           <li>Javascript</li>
           <li>React</li>
           <li>Redux</li>
