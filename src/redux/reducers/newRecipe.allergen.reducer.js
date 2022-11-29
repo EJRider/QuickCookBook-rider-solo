@@ -5,6 +5,8 @@ const newRecipeAllergen = (state=[], action) => {
                 ...state,
                 action.payload
             ]
+        case 'CLEAN_UP':
+           return [];
     }
     return state;
 }

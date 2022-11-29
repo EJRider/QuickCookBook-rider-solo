@@ -41,6 +41,7 @@ function NewRecipe(){
                 recipeSize: storedSize
             }
         })
+        dispatch({type: 'CLEAN_UP'});
     }
     return(
         <>
@@ -91,24 +92,6 @@ function NewRecipe(){
                     <br/>
                     <ul>
                         {storedAllergens.length > 0 && storedAllergens.map(allergen => 
-                            // {switch (allergen){
-                            //     case 1:
-                            //         <li key={allergen}>Milk <button>Remove</button></li>;
-                            //     case 2: 
-                            //         <li key={allergen}>Eggs <button>Remove</button></li>;
-                            //     case 3:
-                            //         <li key={allergen}>Fish <button>Remove</button></li>;
-                            //     case 4:
-                            //         <li key={allergen}>Shellfish <button>Remove</button></li>;
-                            //     case 5: 
-                            //         <li key={allergen}>Tree Nut <button>Remove</button></li>;
-                            //     case 6: 
-                            //         <li key={allergen}>Peanut <button>Remove</button></li>;
-                            //     case 7:
-                            //         <li key={allergen}>Gluten <button>Remove</button></li>;
-                            //     case 8:
-                            //         <li key={allergen}>Soybeans <button>Remove</button></li>;
-                            //     }})}
                        <li key={allergen}>{allergen} <button>Remove</button></li>)}
 
                     </ul>

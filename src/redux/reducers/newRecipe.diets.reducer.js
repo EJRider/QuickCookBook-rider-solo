@@ -4,7 +4,9 @@ const newRecipeDiets = (state=[], action) => {
             return [
                 ...state,
                 action.payload
-            ]
+            ];
+        case 'CLEAN_UP':
+            return [];
     }
     return state;
 }
