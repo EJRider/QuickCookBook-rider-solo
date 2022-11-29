@@ -48,9 +48,89 @@ function NewRecipe(){
         dispatch({type: 'CLEAN_UP'});
         history.push(`/user`);
     }
+
+    const dummyFill = () => {
+        dispatch({
+            type: "SAVE_NAME",
+            payload: "Gluten Free Vegan Pizza"
+        })
+        dispatch({
+            type:"SAVE_DESC",
+            payload: "Not something I'd usually make, but an old friend is came into town and suggested this recipe. Hopefully it's as good as they say it is"
+        });
+        dispatch({
+            type: "SAVE_INST",
+            payload: "Preheat oven to 400°F or 200°C. Cover crust with tomato paste, vegan mozzarella, mushrooms, and red onion. Bake for according to crust directions or until golden brown. Once done remove pizza from oven and add tomatoes and basil, then let cool for 3 to 5 minutes"
+        })
+        dispatch({
+            type: 'SAVE_NR_DIET',
+            payload: [1,2,3,4,5,6,7,8]
+        })
+        dispatch({
+            type: 'TRANSLATE_DIET', 
+            payload: '1'
+        })
+        dispatch({
+            type: 'TRANSLATE_DIET', 
+            payload: '2'
+        })
+        dispatch({
+            type: 'TRANSLATE_DIET', 
+            payload: '3'
+        })
+        dispatch({
+            type: 'TRANSLATE_DIET', 
+            payload: '4'
+        })
+        dispatch({
+            type: 'TRANSLATE_DIET', 
+            payload: '5'
+        })
+        dispatch({
+            type: 'TRANSLATE_DIET', 
+            payload: '6'
+        })
+        dispatch({
+            type: 'TRANSLATE_DIET', 
+            payload: '7'
+        })
+        dispatch({
+            type: 'TRANSLATE_DIET', 
+            payload: '8'
+        })
+        dispatch({
+            type: 'DUMMY_INGREDIENTS',
+            payload: [{ingredient_name: 'Gluten Free Crust', quantity: '1'}, {ingredient_name:'tomato paste', quantity:'6 tablespoons'}, {ingredient_name:'vegan mozzarella', quantity: '8oz sliced'}, {ingredient_name: 'mushrooms', quantity:'2 large sliced'}, {ingredient_name:'red onion', quantity:'1/4 chopped'}, {ingredient_name:'cherry tomatoes', quantity:'6 chopped'}, {ingredient_name: 'basil', quantity: '2 teaspoons chopped'} ]
+        })
+        dispatch({
+            type: 'SAVE_CAL',
+            payload: 520
+        })
+        dispatch({
+            type: 'SAVE_PRO',
+            payload: 23.4
+        })
+        dispatch({
+            type: 'SAVE_SUGAR',
+            payload: 11.4
+        })
+        dispatch({
+            type: 'SAVE_FAT',
+            payload: 6.1
+        })
+        dispatch({
+            type: 'SAVE_CARB',
+            payload: 104.7
+        })
+        dispatch({
+            type: 'SAVE_SERV',
+            payload: '2 slices'
+        })
+    }
+
     return(
         <>
-            <h1>New Recipe</h1>
+            <h1 onClick={dummyFill}>New Recipe</h1>
                 <label for='recipe-name'>Recipe Name:</label>
                 <input
                 type="text"
