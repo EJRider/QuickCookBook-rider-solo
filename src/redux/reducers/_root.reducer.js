@@ -26,6 +26,8 @@ import recipeFat from './recipe.fat.reducer';
 import recipePro from './recipe.pro.reducer';
 import recipeSize from './recipe.serv.reducer';
 import recipeSugar from './recipe.sugar.reducer';
+import allergenTranslator from './allergen.traslate.reducer';
+import dietTranslator from './diet.translate.reducer';
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -62,6 +64,8 @@ const rootReducer = combineReducers({
   recipePro,
   recipeSize,
   recipeSugar,
+  allergenTranslator,
+  dietTranslator,
 });
 
 export default rootReducer;

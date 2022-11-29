@@ -64,15 +64,15 @@ function RecipeDetail(){
         <h3>Calories</h3>
         {recipe.length > 0 && <p>{recipe[0].calories}</p>}
         <h3>Protein</h3>
-        {recipe.length > 0 && <p>{recipe[0].protein}</p>}
+        {recipe.length > 0 && <p>{recipe[0].protein}g</p>}
         <h3>Sugar</h3>
-        {recipe.length > 0 && <p>{recipe[0].sugar}</p>}
+        {recipe.length > 0 && <p>{recipe[0].sugar}g</p>}
         <h3>Fats</h3>
-        {recipe.length > 0 && <p>{recipe[0].fats}</p>}
+        {recipe.length > 0 && <p>{recipe[0].fats}g</p>}
         <h3>Carbohydrates</h3>
-        {recipe.length > 0 && <p>{recipe[0].carbohydrates}</p>}
+        {recipe.length > 0 && <p>{recipe[0].carbohydrates}g</p>}
         <h3>Serving Size</h3>
-        {recipe.length > 0 && <p>{recipe[0].serving_size}</p>}
+        {recipe.length > 0 && <p>{recipe[0].serving_size}g</p>}
         </>
     )
 }

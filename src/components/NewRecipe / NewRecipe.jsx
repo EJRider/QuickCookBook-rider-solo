@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 function NewRecipe(){
+    const history = useHistory();
     const dispatch = useDispatch();
     const newIngredient = useSelector(store=>store.newIngredient);
     const newQuantity = useSelector(store=>store.newQuantity);
@@ -19,6 +21,8 @@ function NewRecipe(){
     const storedSize = useSelector(store=>store.recipeSize);
     const storedSugar = useSelector(store=>store.recipeSugar);
     const userId = useSelector(store=>store.user)
+    const aTrans = useSelector(store=>store.allergenTranslator);
+    const dTrans = useSelector(store=>store.dietTranslator);
     
 
     const submitRecipe = ()=>{
@@ -42,6 +46,7 @@ function NewRecipe(){
             }
         })
         dispatch({type: 'CLEAN_UP'});
+        history.push(`/user`);
     }
     return(
         <>
@@ -87,11 +92,11 @@ function NewRecipe(){
                     </select>
                     <br/>
                     <br/>
-                    <button onClick={()=>{dispatch({type: 'SAVE_NR_ALLERGEN', payload: currentAllergen})}}>Add Allergen</button>
+                    <button onClick={()=>{dispatch({type: 'SAVE_NR_ALLERGEN', payload: currentAllergen}), dispatch({type: 'TRANSLATE_ALLERGEN', payload: currentAllergen})}}>Add Allergen</button>
                     <br/>
                     <br/>
                     <ul>
-                        {storedAllergens.length > 0 && storedAllergens.map(allergen => 
+                        {aTrans.length > 0 && aTrans.map(allergen => 
                        <li key={allergen}>{allergen} <button>Remove</button></li>)}
 
                     </ul>
@@ -112,13 +117,13 @@ function NewRecipe(){
                     </select>
                     <br/>
                     <br/>
-                    <button onClick={()=>{dispatch({type: "SAVE_NR_DIET", payload: currentDiet})}}>Add Diet</button>
+                    <button onClick={()=>{dispatch({type: "SAVE_NR_DIET", payload: currentDiet}), dispatch({type: 'TRANSLATE_DIET', payload: currentDiet})}}>Add Diet</button>
 
                     <br/>
                     <br/>
 
                     <ul>
-                        {storedDiets.length > 0 && storedDiets.map(diet => 
+                        {dTrans.length > 0 && dTrans.map(diet => 
                             <li key={diet}>{diet} <button>Remove</button></li>
                         )}
                     </ul>
@@ -154,7 +159,7 @@ function NewRecipe(){
                             </tr>
                         </tbody>
                     </table>
-                    <button onClick={()=>{dispatch({type: 'ADD_INGREDIENT', payload: {ingredient_name: newIngredient, quantity: newQuantity}})}}>Add Ingredient</button>
+                    <button onClick={()=>{dispatch({type: 'ADD_INGREDIENT', payload: {ingredient_name: newIngredient, quantity: newQuantity}}), dispatch({type: 'CLEAR_INPUT'})}}>Add Ingredient</button>
                 </div>
                 <br/>
                 <ul>
