@@ -4,6 +4,8 @@ const newIngredients = (state =[], action) => {
             return [...state, action.payload];
         case 'DUMMY_INGREDIENTS':
             return action.payload;
+        case 'EDIT_INGREDIENTS':
+            return action.payload;
         case 'CLEAN_UP':
             return [];
     }

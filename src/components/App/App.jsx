@@ -20,6 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import NewRecipe from '../NewRecipe / NewRecipe';
+import EditRecipe from '../EditPage / EditPage';
 
 import './App.css';
 import RecipeDetail from '../RecipeDetail/RecipeDetail';
@@ -69,6 +70,12 @@ function App() {
           >
             <NewRecipe/>
           </ProtectedRoute>  
+          
+          <ProtectedRoute 
+          exact
+          path='/edit/:id'>
+            <EditRecipe/>
+          </ProtectedRoute>
 
           <ProtectedRoute
           exact
@@ -80,13 +87,13 @@ function App() {
           path="/search">
             <SearchPage/>
           </ProtectedRoute>
-          <ProtectedRoute
+          {/* <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
             path="/info"
           >
             <InfoPage />
-          </ProtectedRoute>
+          </ProtectedRoute> */}
 
           <Route
             exact

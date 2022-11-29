@@ -35,7 +35,9 @@ function RecipeBrief({recipe}){
                 </ul>
                 <p>{recipe.description}</p>
                 <p>Likes: {recipe.likes}</p>
-                <button>Edit</button> <button onClick={()=>{
+                <button onClick={()=>{
+                    history.push(`/edit/${recipe.id}`)
+                }}>Edit</button> <button onClick={()=>{
                     dispatch({type: 'DELETE_ITEM', payload: recipe.id}), dispatch({type: 'GET_RECIPES'}, document.location.reload());
                 }}>Delete</button>
             </li>
